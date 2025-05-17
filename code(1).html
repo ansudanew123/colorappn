@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids Coloring Fun!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gradient-to-br from-pink-300 via-purple-300 to-indigo-400 flex flex-col items-center justify-center min-h-screen p-4 overflow-hidden">
+
+    <h1 class="text-5xl font-bold text-white mb-6 text-center shadow-lg animate-bounce-slow">Kids Coloring Fun!</h1>
+
+    <div class="app-container bg-white/80 backdrop-blur-md rounded-xl shadow-2xl p-2 md:p-4 flex flex-col lg:flex-row gap-2 md:gap-4 max-w-6xl w-full">
+
+        <!-- Toolbar -->
+        <div class="toolbar bg-gray-100 p-3 md:p-4 rounded-lg shadow-md flex flex-col gap-4 items-center w-full lg:w-1/4">
+            
+            <!-- Colors -->
+            <div class="w-full">
+                <h3 class="text-lg font-semibold mb-2 text-gray-700">Colors</h3>
+                <div id="colorPalette" class="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-4 lg:grid-cols-5 gap-2">
+                    <!-- Colors will be injected by JS -->
+                </div>
+            </div>
+
+            <!-- Brush Size -->
+            <div class="w-full">
+                <h3 class="text-lg font-semibold mb-2 text-gray-700">Brush Size</h3>
+                <input type="range" id="brushSize" min="1" max="50" value="5" class="w-full cursor-pointer">
+                <span id="brushSizeValue" class="text-sm text-gray-600">5px</span>
+            </div>
+
+            <!-- Tools -->
+			<!-- Inside the <div class="toolbar ..."> -->
+<!-- ... (Color Palette and Brush Size) ... -->
+
+            <!-- Tools -->
+            <div class="w-full">
+                <h3 class="text-lg font-semibold mb-2 text-gray-700">Tools</h3>
+                <div class="grid grid-cols-3 gap-2"> <!-- Changed to grid-cols-3 -->
+                    <button id="penTool" class="tool-btn active-tool bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-lg shadow transition-transform transform hover:scale-105">
+                        <i class="fas fa-paint-brush"></i> Pen
+                    </button>
+                    <button id="eraserTool" class="tool-btn bg-gray-500 hover:bg-gray-600 text-white p-3 rounded-lg shadow transition-transform transform hover:scale-105">
+                        <i class="fas fa-eraser"></i> Eraser
+                    </button>
+                    <button id="fillTool" class="tool-btn bg-purple-500 hover:bg-purple-600 text-white p-3 rounded-lg shadow transition-transform transform hover:scale-105">
+                        <i class="fas fa-fill-drip"></i> Fill
+                    </button>
+                </div>
+            </div>
+
+<!-- ... (Actions) ... -->
+
+
+            <!-- Actions -->
+            <div class="w-full">
+                <h3 class="text-lg font-semibold mb-2 text-gray-700">Actions</h3>
+                <div class="grid grid-cols-2 gap-2">
+                    <button id="undoBtn" class="action-btn bg-yellow-500 hover:bg-yellow-600 text-white p-3 rounded-lg shadow transition-transform transform hover:scale-105">
+                        <i class="fas fa-undo"></i> Undo
+                    </button>
+                    <button id="redoBtn" class="action-btn bg-yellow-500 hover:bg-yellow-600 text-white p-3 rounded-lg shadow transition-transform transform hover:scale-105">
+                        <i class="fas fa-redo"></i> Redo
+                    </button>
+                    <button id="clearBtn" class="action-btn bg-red-500 hover:bg-red-600 text-white p-3 rounded-lg shadow transition-transform transform hover:scale-105">
+                        <i class="fas fa-trash"></i> Clear
+                    </button>
+                    <button id="saveBtn" class="action-btn bg-green-500 hover:bg-green-600 text-white p-3 rounded-lg shadow transition-transform transform hover:scale-105">
+                        <i class="fas fa-save"></i> Save
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Canvas Area -->
+        <div class="canvas-container flex-grow flex flex-col items-center justify-center relative bg-gray-50 p-2 rounded-lg shadow-inner">
+            <canvas id="drawingCanvas" class="border-2 border-gray-300 rounded-md shadow-lg cursor-crosshair"></canvas>
+        </div>
+
+        <!-- Templates (could be a modal or a side panel) -->
+        <div class="templates-panel bg-gray-100 p-3 md:p-4 rounded-lg shadow-md flex flex-col gap-3 items-center w-full lg:w-1/4 lg:max-h-[calc(100vh-150px)] overflow-y-auto">
+            <h3 class="text-lg font-semibold mb-2 text-gray-700">Coloring Pages</h3>
+            <div id="templateContainer" class="grid grid-cols-1 gap-3 w-full">
+                <!-- Templates will be injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="clickSound" src="assets/sounds/click.mp3"></audio>
+    <audio id="drawSound" src="assets/sounds/draw.mp3" loop></audio>
+    <audio id="eraseSound" src="assets/sounds/erase.mp3" loop></audio>
+    <audio id="clearSound" src="assets/sounds/clear.mp3"></audio>
+
+    <script src="code(1).js"></script>
+</body>
+</html>

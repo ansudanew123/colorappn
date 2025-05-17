@@ -1,0 +1,116 @@
+/* Add some custom styles if needed, and for animations */
+body {
+    font-family: 'Comic Sans MS', 'Chalkboard SE', 'Arial', sans-serif; /* Kid-friendly font */
+}
+
+.app-container {
+    /* Max height to prevent overflow on smaller screens, allowing app container to scroll if needed */
+    max-height: calc(100vh - 80px); /* Adjust 80px based on title height and padding */
+}
+
+/* Style for the canvas to ensure it doesn't overflow its container initially */
+#drawingCanvas {
+    display: block; /* Remove extra space below canvas */
+    background-color: white; /* Ensure canvas background is white */
+    max-width: 100%;
+    max-height: 100%;
+    /* JS will set width and height attributes */
+}
+
+.color-swatch {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.color-swatch:hover {
+    transform: scale(1.1);
+}
+
+.color-swatch.selected-color {
+    border-color: #3b82f6; /* blue-500 */
+    transform: scale(1.15);
+    box-shadow: 0 0 10px #3b82f6;
+}
+
+.tool-btn.active-tool {
+    background-color: #2563eb; /* darker blue for active pen */
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+    transform: scale(0.95);
+}
+#eraserTool.active-tool {
+    background-color: #4b5563; /* darker gray for active eraser */
+}
+
+
+.template-item {
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.template-item:hover {
+    transform: scale(1.03);
+    border-color: #60a5fa; /* blue-400 */
+    box-shadow: 0 4px 8px rgba(96, 165, 250, 0.5);
+}
+.template-item img {
+    width: 100%;
+    height: auto;
+    max-height: 100px; /* Adjust as needed */
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+/* Simple bounce animation for title */
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(-5%);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+.animate-bounce-slow {
+  animation: bounce-slow 3s infinite;
+}
+
+/* Ensure responsive layout for canvas container and template panel */
+@media (max-width: 1023px) { /* lg breakpoint */
+    .app-container {
+        flex-direction: column;
+        max-height: none; /* Allow vertical scrolling on smaller screens */
+        overflow-y: auto;
+    }
+    .toolbar, .templates-panel {
+        width: 100%;
+        max-height: none;
+        overflow-y: visible;
+    }
+    #drawingCanvas {
+        /* Ensure canvas takes available space but not more */
+        width: 100%; 
+        height: auto; /* Aspect ratio maintained by JS */
+    }
+    .canvas-container {
+        min-height: 300px; /* Ensure canvas has some height */
+        width: 100%;
+    }
+    #colorPalette {
+        grid-template-cols: repeat(auto-fill, minmax(30px, 1fr)); /* More responsive color palette */
+    }
+}
+
+/* Target smaller screens for brush size text */
+@media (max-width: 767px) { /* md breakpoint */
+    #brushSizeValue {
+        display: block; /* Make it appear on its own line */
+        text-align: center;
+        margin-top: 4px;
+    }
+}
